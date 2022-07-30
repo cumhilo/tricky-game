@@ -3,6 +3,7 @@
 
 # User-specific stuff
 .idea
+.idea/**/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -12,11 +13,12 @@
 # Output directories of JetBrains IDEs
 .idea/**/out
 .idea/**/bin
+out
 out/
 out/**
 
 # Manifest files
-src/META-INF/
+src/META-INF
 src/META-INF/**
 src/META-INF/MANIFEST.MF
 
