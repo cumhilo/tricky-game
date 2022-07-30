@@ -16,7 +16,9 @@ out/
 out/**
 
 # Manifest files
+src/META-INF/
 src/META-INF/**
+src/META-INF/MANIFEST.MF
 
 # AWS User-specific
 .idea/**/aws.xml
