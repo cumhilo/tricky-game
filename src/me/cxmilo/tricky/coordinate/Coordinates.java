@@ -43,6 +43,17 @@ public class Coordinates {
     }
 
     /**
+     * Get the point at the given coordinate.
+     *
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     * @return The point.
+     */
+    public Optional<Point> getPoint(int x, int y) {
+        return getPoint(fromLocation(x, y));
+    }
+
+    /**
      * Get the point of the given number.
      *
      * @param number The number of the point.

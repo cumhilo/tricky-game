@@ -18,7 +18,7 @@ public class VerticalVerifier implements Verifier {
 
         for (int i = 0; i < tableSize; i++) {
             var coordinates = new Coordinates(game.getTable());
-            var optionalX = coordinates.getPoint(coordinates.fromLocation(i, 0));
+            var optionalX = coordinates.getPoint(i, 0);
 
             if (optionalX.isEmpty() || optionalX.get().getOwner().isEmpty()) {
                 continue;
@@ -30,7 +30,7 @@ public class VerticalVerifier implements Verifier {
             }
 
             for (int j = 0; j < tableSize; j++) {
-                var optionalY = coordinates.getPoint(coordinates.fromLocation(i, j));
+                var optionalY = coordinates.getPoint(i, j);
 
                 if (optionalY.isEmpty() || optionalY.get().getOwner().isEmpty()) {
                     continue;
