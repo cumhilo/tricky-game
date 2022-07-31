@@ -6,10 +6,7 @@ import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.table.Tables;
 import me.cxmilo.tricky.util.ChatColor;
 import me.cxmilo.tricky.util.ConsoleUtil;
-import me.cxmilo.tricky.verifier.DrawVerifier;
-import me.cxmilo.tricky.verifier.HorizontalVerifier;
-import me.cxmilo.tricky.verifier.Verifier;
-import me.cxmilo.tricky.verifier.VerticalVerifier;
+import me.cxmilo.tricky.verifier.*;
 
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -74,13 +71,18 @@ public record GameController(Game game, GameLoop gameLoop) {
      * @return a byte if the game is over
      */
     private byte validate(Game game, User owner) {
-        // Vertical verifier
-        Verifier verifier = new VerticalVerifier();
+        // Horizontal verifier
+        Verifier verifier = new HorizontalVerifier();
         if (verifier.verify(game, owner, owner.getScoredPoints())) {
             return 1;
         }
-        // Horizontal verifier
-        verifier = new HorizontalVerifier();
+        // Vertical verifier
+        verifier = new VerticalVerifier();
+        if (verifier.verify(game, owner, owner.getScoredPoints())) {
+            return 1;
+        }
+        // Diagonal verifier
+        verifier = new DiagonalVerifier();
         if (verifier.verify(game, owner, owner.getScoredPoints())) {
             return 1;
         }
