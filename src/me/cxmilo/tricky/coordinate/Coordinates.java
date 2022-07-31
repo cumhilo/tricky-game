@@ -13,6 +13,12 @@ public class Coordinates {
         this.table = table;
     }
 
+    /**
+     * Convert the coordinate to the index of the point in the table.
+     *
+     * @param number the number of the coordinate.
+     * @return the index of the point in the table.
+     */
     public int[][] toLocation(int number) {
         Optional<Point> optionalPoint = getPoint(number);
         if (optionalPoint.isEmpty()) {
@@ -25,11 +31,33 @@ public class Coordinates {
         };
     }
 
+    /**
+     * Convert a location to a number.
+     *
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     * @return The number.
+     */
     public int fromLocation(int x, int y) {
         return x + (y * table.size());
     }
 
+    /**
+     * Get the point of the given number.
+     *
+     * @param number The number of the point.
+     * @return The point of the given number.
+     */
     public Optional<Point> getPoint(int number) {
-        return table.points().stream().filter(point -> point.getCoordinate().getNumber() == number).findFirst();
+        Optional<Point> optionalPoint = Optional.empty();
+
+        for (Point point : table.points()) {
+            if (point.getCoordinate().getNumber() == number) {
+                optionalPoint = Optional.of(point);
+                break;
+            }
+        }
+
+        return optionalPoint;
     }
 }

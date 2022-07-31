@@ -1,6 +1,7 @@
 package me.cxmilo.tricky.game;
 
 import me.cxmilo.tricky.coordinate.Coordinates;
+import me.cxmilo.tricky.entity.Entities;
 import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.table.Tables;
 import me.cxmilo.tricky.util.ChatColor;
@@ -20,15 +21,15 @@ public record GameController(Game game, GameLoop gameLoop) {
 
         boolean[] score = {false};
 
-        game.entities().stream().filter(entity -> entity.getId() == game.getTurn()).findFirst().ifPresent(entity -> {
+        var entities = new Entities(game.entities());
+        entities.findEntity(game.getTurn()).ifPresent(entity -> {
             var coordinates = new Coordinates(game.getTable());
             coordinates.getPoint(cell).ifPresent(point -> {
                 if (point.getOwner().isPresent()) return;
-                point.setOwner((User) entity);
-                point.getOwner().ifPresent(owner -> {
-                    owner.getScoredPoints().add(point);
-                    checkForWinner(logger, owner);
-                });
+                User user = (User) entity;
+                point.setOwner(user);
+                user.getScoredPoints().add(point);
+                checkForWinner(logger, user);
                 score[0] = true;
             });
         });

@@ -1,5 +1,6 @@
 package me.cxmilo.tricky.game;
 
+import me.cxmilo.tricky.entity.Entities;
 import me.cxmilo.tricky.util.ChatColor;
 
 import java.util.Scanner;
@@ -16,9 +17,8 @@ public class TurnBasedGameLoop extends GameLoop {
     protected void processGameLoop() {
         while (isGameRunning()) {
             controller.printTable();
-            game.entities().stream().filter(entity -> entity.getId() == game.getTurn()).findFirst().ifPresent(entity -> {
-                logger.info(ChatColor.translateColorCodes("&a" + entity.getName() + ", please enter a cell to mark&r"));
-            });
+            var entities = new Entities(game.entities());
+            entities.findEntity(game.getTurn()).ifPresent(entity -> logger.info(ChatColor.translateColorCodes("&a" + entity.getName() + ", please enter a cell to mark&r")));
 
             String next = SCANNER.nextLine();
 
