@@ -1,11 +1,9 @@
 package me.cxmilo.tricky.verifier;
 
-import me.cxmilo.tricky.coordinate.Coordinate;
 import me.cxmilo.tricky.coordinate.Coordinates;
 import me.cxmilo.tricky.coordinate.Point;
 import me.cxmilo.tricky.entity.Entity;
 import me.cxmilo.tricky.game.Game;
-import me.cxmilo.tricky.table.Table;
 
 import java.util.Set;
 import java.util.function.BiPredicate;
