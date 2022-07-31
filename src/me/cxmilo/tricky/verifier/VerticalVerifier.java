@@ -12,51 +12,30 @@ public class VerticalVerifier implements Verifier {
     @Override
     public boolean verify(Game game, Entity entity, Set<Point> points) {
 
+        var coordinates = new Coordinates(game.getTable());
         int tableSize = game.getTable().size();
         int row = 0;
-        Point lastPoint = null;
 
         for (int i = 0; i < tableSize; i++) {
-            var coordinates = new Coordinates(game.getTable());
-            var optionalX = coordinates.getPoint(i, 0);
-
-            if (optionalX.isEmpty() || optionalX.get().getOwner().isEmpty()) {
-                continue;
-            }
-
-            Point xPoint = optionalX.get();
-            if (!points.contains(xPoint)) {
-                continue;
-            }
-
             for (int j = 0; j < tableSize; j++) {
-                var optionalY = coordinates.getPoint(i, j);
+                var optionalPoint = coordinates.getPoint(i, j);
 
-                if (optionalY.isEmpty() || optionalY.get().getOwner().isEmpty()) {
+                if (optionalPoint.isEmpty()) {
                     continue;
                 }
 
-                Point yPoint = optionalY.get();
-                if (lastPoint == null) {
-                    lastPoint = yPoint;
-                }
+                var point = optionalPoint.get();
 
-                if (lastPoint.getOwner().isEmpty() || lastPoint.getOwner().get() != yPoint.getOwner().get()) {
-                    continue;
-                }
-
-                if (lastPoint.getCoordinate().getX() == yPoint.getCoordinate().getX()) {
+                if (points.contains(point)) {
                     row++;
+                } else {
+                    row = 0;
                 }
 
                 if (row == game.getTable().size()) {
                     return true;
                 }
-
-                lastPoint = yPoint;
             }
-            lastPoint = null;
-            row = 0;
         }
         return false;
     }
