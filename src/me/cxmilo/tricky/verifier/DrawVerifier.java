@@ -10,6 +10,6 @@ public class DrawVerifier implements Verifier {
 
     @Override
     public boolean verify(Game game, Entity entity, Set<Point> points) {
-        return game.getTable().size() * game.getTable().size()  == points.size();
+        return game.getTable().size() * game.getTable().size() == points.size();
     }
 }
