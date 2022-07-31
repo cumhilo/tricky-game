@@ -1,6 +1,5 @@
 package me.cxmilo.tricky.verifier;
 
-import me.cxmilo.tricky.coordinate.Coordinate;
 import me.cxmilo.tricky.coordinate.Point;
 import me.cxmilo.tricky.entity.Entity;
 import me.cxmilo.tricky.game.Game;
@@ -24,8 +23,8 @@ public class HorizontalVerifier implements Verifier {
                 lastPoint = point;
             }
 
-            Coordinate lastPointCoordinate = lastPoint.getCoordinate();
-            Coordinate pointCoordinate = point.getCoordinate();
+            var lastPointCoordinate = lastPoint.getCoordinate();
+            var pointCoordinate = point.getCoordinate();
             if (lastPointCoordinate.getY() != pointCoordinate.getY()) {
                 row = 0;
             }
