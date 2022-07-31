@@ -30,9 +30,7 @@ public class HorizontalVerifier implements Verifier {
                 row = 0;
             }
 
-            row++;
-
-            if (row == game.getTable().size()) {
+            if (++row == game.getTable().size()) {
                 return true;
             }
 
