@@ -38,7 +38,6 @@ public class HorizontalVerifier implements Verifier {
 
             lastPoint = point;
         }
-
         return false;
     }
 }

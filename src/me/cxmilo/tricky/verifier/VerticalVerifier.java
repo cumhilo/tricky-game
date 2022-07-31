@@ -58,7 +58,6 @@ public class VerticalVerifier implements Verifier {
             lastPoint = null;
             row = 0;
         }
-
         return false;
     }
 }
