@@ -4,6 +4,11 @@ import java.io.IOException;
 
 public class ConsoleUtil {
 
+    /**
+     * Clear the console.
+     *
+     * @throws RuntimeException if an error occurs.
+     */
     public static void clearScreen() {
         try {
             new ProcessBuilder("cmd", "/c", "cls", "clear").inheritIO().start().waitFor();
