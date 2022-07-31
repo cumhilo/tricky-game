@@ -12,12 +12,14 @@ import java.util.function.BiPredicate;
 
 public class DiagonalVerifier implements Verifier {
 
+    private final BiPredicate<Point, Set<Point>> pointPredicate = (point, points) -> points.contains(point);
+
     @Override
     public boolean verify(Game game, Entity entity, Set<Point> points) {
 
-        Table table = game.getTable();
-        var coordinates = new Coordinates(table);
         int row = 0;
+        var table = game.getTable();
+        var coordinates = new Coordinates(table);
         for (int i = 0; i < table.size(); i++) {
             var coordinate = coordinates.getPoint(0, i);
 
@@ -25,15 +27,15 @@ public class DiagonalVerifier implements Verifier {
                 continue;
             }
 
-            Point point = coordinate.get();
-            Coordinate pointCoordinate = point.getCoordinate();
+            var point = coordinate.get();
+            var pointCoordinate = point.getCoordinate();
             if (pointCoordinate.getY() != 0 && pointCoordinate.getY() != table.size() - 1) {
                 continue;
             }
 
             for (int j = 0; j < table.size(); j++) {
-                var rightDown = coordinates.getPoint(point.getCoordinate().getX() + j, point.getCoordinate().getY() + j);
-                var rightUp = coordinates.getPoint(point.getCoordinate().getX() + j, point.getCoordinate().getY() - j);
+                var rightDown = coordinates.getPoint(pointCoordinate.getX() + j, pointCoordinate.getY() + j);
+                var rightUp = coordinates.getPoint(pointCoordinate.getX() + j, pointCoordinate.getY() - j);
                 var sum = false;
 
                 if (rightUp.isPresent()) {
@@ -52,6 +54,4 @@ public class DiagonalVerifier implements Verifier {
         }
         return false;
     }
-
-    private final BiPredicate<Point, Set<Point>> pointPredicate = (point, points) -> points.contains(point);
 }
