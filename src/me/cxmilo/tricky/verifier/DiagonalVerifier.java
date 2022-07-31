@@ -37,11 +37,11 @@ public class DiagonalVerifier implements Verifier {
                 var sum = false;
 
                 if (rightUp.isPresent()) {
-                    sum = isOwner.test(rightUp.get(), entity);
+                    sum = pointPredicate.test(rightUp.get(), points);
                 }
 
                 if (!sum && rightDown.isPresent()) {
-                    sum = isOwner.test(rightDown.get(), entity);
+                    sum = pointPredicate.test(rightDown.get(), points);
                 }
 
                 if (sum && ++row == game.getTable().size()) {
@@ -53,11 +53,5 @@ public class DiagonalVerifier implements Verifier {
         return false;
     }
 
-    private final BiPredicate<Point, Entity> isOwner = (point, entity) -> {
-        if (point.getOwner().isEmpty()) {
-            return false;
-        }
-
-        return point.getOwner().get().getId() == entity.getId();
-    };
+    private final BiPredicate<Point, Set<Point>> pointPredicate = (point, points) -> points.contains(point);
 }
