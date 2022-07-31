@@ -2,8 +2,6 @@ package me.cxmilo.tricky.util;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public enum ChatColor {
     BLACK('0', "\u001B[30m"),
@@ -20,11 +18,9 @@ public enum ChatColor {
     RESET('r', "\u001B[0m");
 
     private static final Map<Character, ChatColor> COLOR_MAP;
-    private static final Pattern COLOR_PATTERN;
 
     static {
         COLOR_MAP = new HashMap<>();
-        COLOR_PATTERN = Pattern.compile("&(.)");
         for (ChatColor chatColor : ChatColor.values()) {
             COLOR_MAP.put(chatColor.code, chatColor);
         }
@@ -38,13 +34,26 @@ public enum ChatColor {
         this.color = color;
     }
 
+    /**
+     * Replace all color codes in the given string with the color code of this enum.
+     *
+     * @param textToTranslate The text to translate.
+     * @return The translated text.
+     */
     public static String translateColorCodes(String textToTranslate) {
-        Matcher colorMatcher = COLOR_PATTERN.matcher(textToTranslate);
-        while (colorMatcher.find()) {
-            char colorCode = colorMatcher.group().charAt(1);
-            ChatColor chatColor = COLOR_MAP.get(colorCode);
-            if (chatColor == null) chatColor = ChatColor.WHITE;
-            textToTranslate = textToTranslate.replaceAll("&" + colorCode, chatColor.color);
+        var charArray = textToTranslate.toCharArray();
+        int currentIndex = 0;
+        int charSize = charArray.length;
+
+        for (char character : charArray) {
+            int nextIndex = currentIndex + 1;
+            if (character == '&' && charSize > nextIndex) {
+                char nextChar = charArray[nextIndex];
+                var chatColor = COLOR_MAP.get(nextChar);
+                if (chatColor == null) continue;
+                textToTranslate = textToTranslate.replace("&" + nextChar, chatColor.color);
+            }
+            currentIndex++;
         }
         return textToTranslate;
     }
