@@ -1,7 +1,7 @@
 package me.cxmilo.tricky.table;
 
 import me.cxmilo.tricky.coordinate.Coordinate;
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.util.ChatColor;
 
 import java.util.Comparator;
@@ -17,7 +17,7 @@ public class Tables {
             }
 
             if (point.getOwner().isPresent()) {
-                Optional<UserEntity> owner = point.getOwner();
+                Optional<User> owner = point.getOwner();
                 System.out.print(ChatColor.translateColorCodes(" &b" + owner.get().getDecorator() + "&r "));
                 return;
             }

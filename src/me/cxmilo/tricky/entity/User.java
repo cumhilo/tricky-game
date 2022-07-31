@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserEntity
+public class User
         implements Entity {
 
     private final String name;
@@ -15,7 +15,7 @@ public class UserEntity
     private final char decorator;
     private final Set<Point> scoredPoints;
 
-    public UserEntity(String name, short id, char decorator) {
+    public User(String name, short id, char decorator) {
         this.name = name;
         this.id = id;
         this.decorator = decorator;

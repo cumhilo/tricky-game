@@ -1,27 +1,27 @@
 package me.cxmilo.tricky.coordinate;
 
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 
 import java.util.Comparator;
 import java.util.Optional;
 
 public class Points implements Point {
 
-    private UserEntity owner;
+    private User owner;
     private Coordinate coordinate;
 
-    public Points(UserEntity owner, Coordinate coordinate) {
+    public Points(User owner, Coordinate coordinate) {
         this.owner = owner;
         this.coordinate = coordinate;
     }
 
     @Override
-    public Optional<UserEntity> getOwner() {
+    public Optional<User> getOwner() {
         return Optional.ofNullable(owner);
     }
 
     @Override
-    public void setOwner(UserEntity owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

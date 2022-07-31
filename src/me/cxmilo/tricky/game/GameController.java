@@ -1,7 +1,7 @@
 package me.cxmilo.tricky.game;
 
 import me.cxmilo.tricky.coordinate.Coordinates;
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.table.Tables;
 import me.cxmilo.tricky.util.ChatColor;
 import me.cxmilo.tricky.util.ConsoleUtil;
@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 public record GameController(Game game, GameLoop gameLoop) {
 
-
     public boolean score(int cell) {
         Logger logger = gameLoop.logger;
 
@@ -25,7 +24,7 @@ public record GameController(Game game, GameLoop gameLoop) {
             var coordinates = new Coordinates(game.getTable());
             coordinates.getPoint(cell).ifPresent(point -> {
                 if (point.getOwner().isPresent()) return;
-                point.setOwner((UserEntity) entity);
+                point.setOwner((User) entity);
                 point.getOwner().ifPresent(owner -> {
                     owner.getScoredPoints().add(point);
                     checkForWinner(logger, owner);
@@ -49,7 +48,7 @@ public record GameController(Game game, GameLoop gameLoop) {
      * @param logger the logger to use.
      * @param entity the entity to check for winning.
      */
-    public void checkForWinner(Logger logger, UserEntity entity) {
+    public void checkForWinner(Logger logger, User entity) {
         byte validate = validate(game, entity);
         if (validate != -1) {
             gameLoop.stop();
@@ -73,7 +72,7 @@ public record GameController(Game game, GameLoop gameLoop) {
      * @param owner the owner of the point
      * @return a byte if the game is over
      */
-    private byte validate(Game game, UserEntity owner) {
+    private byte validate(Game game, User owner) {
         // Vertical verifier
         Verifier verifier = new VerticalVerifier();
         if (verifier.verify(game, owner, owner.getScoredPoints())) {

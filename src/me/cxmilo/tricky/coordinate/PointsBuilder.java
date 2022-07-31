@@ -1,12 +1,13 @@
 package me.cxmilo.tricky.coordinate;
 
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 
 public class PointsBuilder {
-    private UserEntity owner;
+
+    private User owner;
     private Coordinate coordinate;
 
-    public PointsBuilder setOwner(UserEntity owner) {
+    public PointsBuilder setOwner(User owner) {
         this.owner = owner;
         return this;
     }

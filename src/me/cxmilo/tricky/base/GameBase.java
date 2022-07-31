@@ -1,6 +1,6 @@
 package me.cxmilo.tricky.base;
 
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.game.Game;
 import me.cxmilo.tricky.game.impl.TrickyGame;
 import me.cxmilo.tricky.table.Table;
@@ -11,10 +11,10 @@ public class GameBase
         implements Base {
 
     private final Table table;
-    private final Set<UserEntity> userEntities;
+    private final Set<User> userEntities;
     private Game game;
 
-    public GameBase(Table table, Set<UserEntity> userEntities) {
+    public GameBase(Table table, Set<User> userEntities) {
         this.table = table;
         this.userEntities = userEntities;
     }

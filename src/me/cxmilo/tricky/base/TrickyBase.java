@@ -1,7 +1,7 @@
 package me.cxmilo.tricky.base;
 
 import me.cxmilo.tricky.coordinate.Point;
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 import me.cxmilo.tricky.game.Game;
 import me.cxmilo.tricky.game.GameLoop;
 import me.cxmilo.tricky.game.TurnBasedGameLoop;
@@ -17,12 +17,11 @@ public class TrickyBase
     private static final int TABLE_SIZE = 3;
 
     private final Set<Point> points = new HashSet<>();
-    private final Set<UserEntity> userEntities = new HashSet<>();
+    private final Set<User> userEntities = new HashSet<>();
 
     private Base pointBase;
     private EntitiesBase entitiesBase;
     private GameBase gameBase;
-
 
     @Override
     public void init() {

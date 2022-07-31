@@ -1,6 +1,6 @@
 package me.cxmilo.tricky.coordinate;
 
-import me.cxmilo.tricky.entity.UserEntity;
+import me.cxmilo.tricky.entity.User;
 
 import java.util.Optional;
 
@@ -11,14 +11,14 @@ public interface Point extends Comparable<Point> {
      *
      * @return The owner of the point.
      */
-    Optional<UserEntity> getOwner();
+    Optional<User> getOwner();
 
     /**
      * Set the owner of the point.
      *
-     * @param UserEntity The owner of the point.
+     * @param User The owner of the point.
      */
-    void setOwner(UserEntity UserEntity);
+    void setOwner(User User);
 
     /**
      * Get the coordinate of the point.
