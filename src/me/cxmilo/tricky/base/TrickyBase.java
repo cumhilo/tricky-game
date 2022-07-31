@@ -8,6 +8,7 @@ import me.cxmilo.tricky.game.TurnBasedGameLoop;
 import me.cxmilo.tricky.table.DefaultTable;
 import me.cxmilo.tricky.table.Table;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class TrickyBase
 
     private static final int TABLE_SIZE = 3;
 
-    private final Set<Point> points = new LinkedHashSet<>();
+    private final Set<Point> points = Collections.synchronizedSet(new LinkedHashSet<>());
     private final Set<User> userEntities = new HashSet<>();
 
     private Base pointBase;
