@@ -26,16 +26,15 @@ public class VerticalVerifier implements Verifier {
 
                 var point = optionalPoint.get();
 
-                if (points.contains(point)) {
-                    row++;
-                } else {
-                    row = 0;
+                if (!points.contains(point)) {
+                    continue;
                 }
 
-                if (row == game.getTable().size()) {
+                if (++row == game.getTable().size()) {
                     return true;
                 }
             }
+            row = 0;
         }
         return false;
     }
