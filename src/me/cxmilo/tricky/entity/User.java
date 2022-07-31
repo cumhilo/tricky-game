@@ -5,6 +5,7 @@ import me.cxmilo.tricky.coordinate.Point;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class User
@@ -43,5 +44,17 @@ public class User
 
     public Set<Point> getScoredPoints() {
         return scoredPoints;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return id == user.id && decorator == user.decorator && name.equals(user.name) && scoredPoints.equals(user.scoredPoints);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, id, decorator, scoredPoints);
     }
 }
