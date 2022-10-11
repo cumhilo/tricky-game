@@ -35,13 +35,13 @@ public enum ChatColor {
     }
 
     /**
-     * Replace all color codes in the given string with the color code of this enum.
+     * Translate all color codes in the given string with the corresponding color.
      *
-     * @param textToTranslate The text to translate.
-     * @return The translated text.
+     * @param translateText The text to replace with color codes.
+     * @return the text translated with colors.
      */
-    public static String translateColorCodes(String textToTranslate) {
-        var charArray = textToTranslate.toCharArray();
+    public static String translate(String translateText) {
+        var charArray = translateText.toCharArray();
         int currentIndex = 0;
         int charSize = charArray.length;
 
@@ -51,10 +51,20 @@ public enum ChatColor {
                 char nextChar = charArray[nextIndex];
                 var chatColor = COLOR_MAP.get(nextChar);
                 if (chatColor == null) continue;
-                textToTranslate = textToTranslate.replace("&" + nextChar, chatColor.color);
+                translateText = translateText.replace("&" + nextChar, chatColor.color);
             }
             currentIndex++;
         }
-        return textToTranslate;
+        return clause(translateText);
+    }
+
+    /**
+     * Clause the given text with the reset color code.
+     *
+     * @param textToReset the text to clause.
+     * @return the clause text.
+     */
+    private static String clause(String textToReset) {
+        return textToReset + RESET.color;
     }
 }

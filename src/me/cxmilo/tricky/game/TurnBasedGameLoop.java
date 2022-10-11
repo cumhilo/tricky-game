@@ -18,12 +18,12 @@ public class TurnBasedGameLoop extends GameLoop {
         while (isGameRunning()) {
             controller.printTable();
             var entities = new Entities(game.entities());
-            entities.findEntity(game.getTurn()).ifPresent(entity -> logger.info(ChatColor.translateColorCodes("&a" + entity.getName() + ", please enter a cell to mark&r")));
+            entities.findEntity(game.getTurn()).ifPresent(entity -> logger.info(ChatColor.translate("&a" + entity.getName() + ", please enter a cell to mark")));
 
             String next = SCANNER.nextLine();
 
             if (next == null || next.isBlank() || next.isEmpty()) {
-                logger.info(ChatColor.translateColorCodes("&c" + next + " isn't a valid input, please try again!&r"));
+                logger.info(ChatColor.translate("&c" + next + " isn't a valid input, please try again!"));
                 continue;
             }
 
@@ -32,7 +32,7 @@ public class TurnBasedGameLoop extends GameLoop {
             try {
                 parsedInput = Integer.parseInt(next);
             } catch (NumberFormatException exception) {
-                logger.severe(ChatColor.translateColorCodes("&c" + next + " isn't a valid input, please try again!&r"));
+                logger.severe(ChatColor.translate("&c" + next + " isn't a valid input, please try again!"));
                 continue;
             }
 

@@ -54,8 +54,8 @@ public record GameController(Game game, GameLoop gameLoop) {
         }
 
         switch (validate) {
-            case 0 -> logger.info(ChatColor.translateColorCodes("&dIt's a draw!&r"));
-            case 1 -> logger.info(ChatColor.translateColorCodes("&d" + entity.getName() + "&b has won the game!&r"));
+            case 0 -> logger.info(ChatColor.translate("&dIt's a draw!"));
+            case 1 -> logger.info(ChatColor.translate("&d" + entity.getName() + "&b has won the game!"));
         }
     }
 

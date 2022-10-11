@@ -23,7 +23,7 @@ public class Tables {
 
             if (point.getOwner().isPresent()) {
                 Optional<User> owner = point.getOwner();
-                System.out.print(ChatColor.translateColorCodes(" &b" + owner.get().getDecorator() + "&r "));
+                System.out.print(ChatColor.translate(" &b" + owner.get().getDecorator() + "&r "));
                 continue;
             }
             System.out.print(" # ");
